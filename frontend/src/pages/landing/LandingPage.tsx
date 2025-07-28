@@ -1,7 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-
-// Importando componentes de landing
 import HeroSection from '../../components/landing/HeroSection';
 import ProblemSolution from '../../components/landing/ProblemSolution';
 import InnovativeFeatures from '../../components/landing/InnovativeFeatures';
@@ -16,15 +14,59 @@ import Integration from '../../components/landing/Integration';
  * con componentes modernos e interactivos
  */
 const LandingPage: React.FC = () => {
+  // Referencia para efectos de parallax en toda la página
+  const pageRef = useRef<HTMLDivElement>(null);
+  
   // Scroll al inicio cuando se carga la página
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+  
+  // Efecto de decoración en scroll para secciones
+  useEffect(() => {
+    const parallaxElements = document.querySelectorAll('.parallax-element');
+    
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      
+      parallaxElements.forEach((element) => {
+        const elementEl = element as HTMLElement;
+        const speed = parseFloat(elementEl.dataset.speed || '0.1');
+        const direction = elementEl.dataset.direction === 'up' ? -1 : 1;
+        const offset = scrollTop * speed * direction;
+        
+        // Solo aplicamos parallax a elementos decorativos, no a las secciones completas
+        elementEl.style.transform = `translateY(${offset}px)`;
+      });
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 overflow-x-hidden">
+    <div ref={pageRef} className="min-h-screen overflow-x-hidden relative">
+      {/* Fondo unificado - patrón sutil en el fondo */}
+      <div className="fixed inset-0 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 z-0">
+        {/* Patrones SVG sutiles */}
+        <div className="absolute inset-0 opacity-10 dark:opacity-20" 
+          style={{
+            backgroundImage: "url('data:image/svg+xml,%3Csvg width=\'100\' height=\'100\' viewBox=\'0 0 100 100\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z\' fill=\'currentColor\' fill-opacity=\'1\' fill-rule=\'evenodd\'/%3E%3C/svg%3E')",
+            backgroundSize: '100px 100px'
+          }}
+        ></div>
+        
+        {/* Degradados sutiles flotantes */}
+        <div className="absolute top-0 left-0 right-0 h-64 bg-gradient-to-b from-primary-500/5 to-transparent"></div>
+        <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-accent-500/5 to-transparent"></div>
+        <div className="absolute top-1/3 -right-32 w-96 h-96 rounded-full bg-financial-400/5 blur-3xl animate-pulse-slow"></div>
+        <div className="absolute top-2/3 -left-32 w-96 h-96 rounded-full bg-accent-400/5 blur-3xl animate-pulse-slow animation-delay-2000"></div>
+      </div>
       {/* Encabezado con navegación */}
-      <header className="sticky top-0 z-50 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm shadow-sm">
+      <header className="sticky top-0 z-50 bg-white/80 dark:bg-gray-800/80 backdrop-blur-md shadow-sm">
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center">
@@ -70,43 +112,68 @@ const LandingPage: React.FC = () => {
         </nav>
       </header>
 
-      {/* Hero Section */}
-      <section className="relative bg-white dark:bg-gray-800 overflow-hidden">
-        <HeroSection />
-      </section>
-      
-      {/* Problem Solution */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-900">
-        <ProblemSolution />
-      </section>
-      
-      {/* Innovative Features */}
-      <section id="features" className="py-24 bg-white dark:bg-gray-800">
-        <InnovativeFeatures />
-      </section>
-      
-      {/* ROI Calculator */}
-      <section id="roi" className="py-20 bg-gray-50 dark:bg-gray-900">
-        <ROICalculator />
-      </section>
-      
-      {/* Comparison Table */}
-      <section id="comparison" className="py-24 bg-white dark:bg-gray-800">
-        <ComparisonTable />
-      </section>
-      
-      {/* Use Cases */}
-      <section id="cases" className="py-20 bg-gray-50 dark:bg-gray-900">
-        <UseCases />
-      </section>
-      
-      {/* Integration */}
-      <section className="py-24 bg-white dark:bg-gray-800">
-        <Integration />
-      </section>
+      {/* Contenedor principal con z-index sobre el fondo */}
+      <div className="relative z-10">
+        {/* Elementos decorativos flotantes con parallax */}
+        <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+          <div className="absolute top-1/4 left-1/6 w-24 h-24 rounded-full border-2 border-primary-300/20 dark:border-primary-400/10 parallax-element" data-speed="0.08" data-direction="down"></div>
+          <div className="absolute top-1/3 right-1/4 w-16 h-16 rounded-md border-2 border-accent-400/30 dark:border-accent-300/20 parallax-element" data-speed="0.06" data-direction="up"></div>
+          <div className="absolute bottom-1/2 left-1/3 w-12 h-12 rounded-full border-2 border-secondary-400/20 dark:border-secondary-300/10 parallax-element" data-speed="0.04" data-direction="down"></div>
+          <div className="absolute bottom-1/4 right-1/6 w-20 h-20 rounded-md border-2 border-financial-400/30 dark:border-financial-300/20 parallax-element" data-speed="0.07" data-direction="up"></div>
+        </div>
+        
+        {/* Hero Section */}
+        <section className="relative py-20 mb-8">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <HeroSection />
+          </div>
+        </section>
+        
+        {/* Problem Solution - fondo alterno */}
+        <section className="py-20 mb-8 bg-white/40 dark:bg-gray-800/40 backdrop-blur-sm">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <ProblemSolution />
+          </div>
+        </section>
+        
+        {/* Innovative Features */}
+        <section id="features" className="py-24 mb-8">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <InnovativeFeatures />
+          </div>
+        </section>
+        
+        {/* ROI Calculator - fondo alterno */}
+        <section id="roi" className="py-20 mb-8 bg-white/40 dark:bg-gray-800/40 backdrop-blur-sm">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <ROICalculator />
+          </div>
+        </section>
+        
+        {/* Comparison Table */}
+        <section id="comparison" className="py-24 mb-8">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <ComparisonTable />
+          </div>
+        </section>
+        
+        {/* Use Cases - fondo alterno */}
+        <section id="cases" className="py-20 mb-8 bg-white/40 dark:bg-gray-800/40 backdrop-blur-sm">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <UseCases />
+          </div>
+        </section>
+        
+        {/* Integration */}
+        <section className="py-24 mb-8">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <Integration />
+          </div>
+        </section>
+      </div>
       
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-16">
+      <footer className="relative z-10 bg-gray-900 text-white py-16 mt-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
@@ -167,6 +234,9 @@ const LandingPage: React.FC = () => {
             <p className="text-gray-400 text-sm text-center">
               &copy; {new Date().getFullYear()} Gastify. Todos los derechos reservados.
             </p>
+            <div className="flex justify-center mt-4">
+              <span className="text-xs text-gray-500">Diseñado con ❤️ para la eficiencia empresarial</span>
+            </div>
           </div>
         </div>
       </footer>

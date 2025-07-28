@@ -94,6 +94,8 @@ export default {
         'spin-fast': 'spin 0.5s linear infinite',
         'blob': 'blob 7s infinite',
         'blink': 'blink 1s step-end infinite',
+        'float': 'float 6s ease-in-out infinite alternate',
+        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       },
       keyframes: {
         blob: {
@@ -113,11 +115,24 @@ export default {
         blink: {
           '0%, 100%': { opacity: 1 },
           '50%': { opacity: 0 },
+        },
+        float: {
+          '0%': {
+            transform: 'translateY(0px)',
+          },
+          '50%': {
+            transform: 'translateY(-10px)',
+          },
+          '100%': {
+            transform: 'translateY(5px)',
+          },
         }
       },
       transitionDelay: {
         '2000': '2000ms',
+        '3000': '3000ms',
         '4000': '4000ms',
+        '5000': '5000ms',
       },
       // Agregar clases para animation-delay
       utilities: {

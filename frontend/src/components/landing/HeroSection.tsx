@@ -96,17 +96,24 @@ const HeroSection: React.FC = () => {
   }, []);
   
   return (
-    <div className="relative bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 overflow-hidden">
-      {/* Gradientes dinámicos de fondo */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-gradient-to-r from-primary-300/30 to-primary-400/40 blur-2xl transform animate-blob"></div>
-        <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-gradient-to-l from-secondary-300/20 to-secondary-400/30 blur-xl transform animate-blob animation-delay-2000"></div>
-        <div className="absolute -bottom-8 left-64 w-80 h-80 rounded-full bg-gradient-to-tr from-primary-400/20 to-secondary-300/30 blur-xl transform animate-blob animation-delay-4000"></div>
+    <div className="relative overflow-visible">
+      {/* Elementos decorativos flotantes */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-10 left-10 w-16 h-16 rounded-full border-2 border-primary-300/20 dark:border-primary-400/10 transform animate-float opacity-30"></div>
+        <div className="absolute bottom-20 right-10 w-12 h-12 rounded-full border-2 border-accent-400/10 dark:border-accent-300/20 transform animate-float animation-delay-2000 opacity-30"></div>
+        
+        {/* Iconos pequeños flotantes - reducidos para evitar sobrecarga visual */}
+        <div className="absolute top-1/6 left-0 text-primary-400/20 dark:text-primary-300/10 transform animate-float animation-delay-3000">
+          <ChartBarIcon className="h-5 w-5 md:h-6 md:w-6" />
+        </div>
+        <div className="absolute bottom-1/4 right-0 text-accent-400/20 dark:text-accent-300/10 transform animate-float animation-delay-5000">
+          <DocumentTextIcon className="h-6 w-6" />
+        </div>
       </div>
       
       <div className="max-w-7xl mx-auto relative z-10" ref={parallaxRef}>
-        <div className="relative pt-6 pb-16 sm:pb-24">
-          <div className="mt-16 sm:mt-24 lg:mt-32 lg:grid lg:grid-cols-12 lg:gap-8">
+        <div className="relative pb-8 sm:pb-16">
+          <div className="mt-8 sm:mt-12 lg:mt-16 lg:grid lg:grid-cols-12 lg:gap-8">
             {/* Columna izquierda - Texto y CTA */}
             <div className="sm:text-center md:max-w-3xl md:mx-auto lg:col-span-6 lg:text-left lg:flex lg:flex-col lg:justify-center">
               <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white sm:text-5xl md:text-6xl">
