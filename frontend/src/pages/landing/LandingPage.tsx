@@ -71,11 +71,6 @@ const LandingPage: React.FC = () => {
           <div className="flex items-center justify-between">
             <div className="flex items-center">
               <Link to="/" className="flex items-center">
-                <img
-                  src="/logo.svg"
-                  alt="Gastify Logo"
-                  className="h-8 w-auto mr-2"
-                />
                 <span className="text-xl font-bold text-gray-900 dark:text-white">Gastify</span>
               </Link>
             </div>
@@ -130,7 +125,7 @@ const LandingPage: React.FC = () => {
         </section>
         
         {/* Problem Solution - fondo alterno */}
-        <section className="py-20 mb-8 bg-white/40 dark:bg-gray-800/40 backdrop-blur-sm">
+        <section className="py-20 mb-8">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <ProblemSolution />
           </div>
@@ -144,7 +139,7 @@ const LandingPage: React.FC = () => {
         </section>
         
         {/* ROI Calculator - fondo alterno */}
-        <section id="roi" className="py-20 mb-8 bg-white/40 dark:bg-gray-800/40 backdrop-blur-sm">
+        <section id="roi" className="py-20 mb-8">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <ROICalculator />
           </div>
@@ -158,7 +153,7 @@ const LandingPage: React.FC = () => {
         </section>
         
         {/* Use Cases - fondo alterno */}
-        <section id="cases" className="py-20 mb-8 bg-white/40 dark:bg-gray-800/40 backdrop-blur-sm">
+        <section id="cases" className="py-20 mb-8">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <UseCases />
           </div>
