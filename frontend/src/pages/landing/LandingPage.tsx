@@ -1,226 +1,175 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+
+// Importando componentes de landing
+import HeroSection from '../../components/landing/HeroSection';
+import ProblemSolution from '../../components/landing/ProblemSolution';
+import InnovativeFeatures from '../../components/landing/InnovativeFeatures';
+import ROICalculator from '../../components/landing/ROICalculator';
+import ComparisonTable from '../../components/landing/ComparisonTable';
+import UseCases from '../../components/landing/UseCases';
+import Integration from '../../components/landing/Integration';
 
 /**
  * Página principal de Gastify - Landing Page
  * Muestra las características principales y beneficios de la aplicación
+ * con componentes modernos e interactivos
  */
 const LandingPage: React.FC = () => {
+  // Scroll al inicio cuando se carga la página
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 overflow-x-hidden">
+      {/* Encabezado con navegación */}
+      <header className="sticky top-0 z-50 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm shadow-sm">
+        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              <Link to="/" className="flex items-center">
+                <img
+                  src="/logo.svg"
+                  alt="Gastify Logo"
+                  className="h-8 w-auto mr-2"
+                />
+                <span className="text-xl font-bold text-gray-900 dark:text-white">Gastify</span>
+              </Link>
+            </div>
+            
+            <div className="hidden md:flex space-x-8 items-center">
+              <a href="#features" className="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium">
+                Características
+              </a>
+              <a href="#roi" className="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium">
+                ROI
+              </a>
+              <a href="#comparison" className="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium">
+                Comparativa
+              </a>
+              <a href="#cases" className="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 font-medium">
+                Casos de Uso
+              </a>
+              <Link 
+                to="/login" 
+                className="ml-4 px-4 py-2 rounded-md bg-primary-600 text-white font-medium hover:bg-primary-700 transition-colors"
+              >
+                Iniciar Sesión
+              </Link>
+            </div>
+            
+            <div className="md:hidden">
+              <button type="button" className="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400">
+                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </nav>
+      </header>
+
       {/* Hero Section */}
-      <div className="relative bg-white overflow-hidden">
-        <div className="max-w-7xl mx-auto">
-          <div className="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
-            <main className="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
-              <div className="sm:text-center lg:text-left">
-                <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
-                  <span className="block xl:inline">Gestión de Gastos</span>{' '}
-                  <span className="block text-primary-600 xl:inline">Simplificada</span>
-                </h1>
-                <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
-                  Gastify es la solución completa para la gestión eficiente de gastos corporativos. 
-                  Simplifica el proceso de registro, aprobación y seguimiento de gastos, 
-                  optimizando tu tiempo y reduciendo costos innecesarios.
-                </p>
-                <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
-                  <div className="rounded-md shadow">
-                    <Link
-                      to="/login"
-                      className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary-600 hover:bg-primary-700 transition-colors duration-200 md:py-4 md:text-lg md:px-10"
-                    >
-                      Comenzar Ahora
-                    </Link>
-                  </div>
-                  <div className="mt-3 sm:mt-0 sm:ml-3">
-                    <Link
-                      to="/contact"
-                      className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-primary-700 bg-primary-100 hover:bg-primary-200 transition-colors duration-200 md:py-4 md:text-lg md:px-10"
-                    >
-                      Contactar
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </main>
-          </div>
-        </div>
-        <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
-          <img
-            className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full"
-            src="/images/hero-image.jpg"
-            alt="Person using a laptop"
-          />
-        </div>
-      </div>
-
-      {/* Features Section */}
-      <div className="bg-gray-50">
-        <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
-          <div className="space-y-12 md:space-y-0 md:grid md:grid-cols-2 md:gap-8">
-            {/* Feature 1 */}
-            <div className="space-y-4">
-              <div className="flex items-center justify-center h-12 w-12 rounded-md bg-primary-500 text-white">
-                <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-medium leading-6 text-gray-900">Sistema de Aprobación Automático</h3>
-              <p className="mt-2 text-base text-gray-500">
-                Nuestro sistema inteligente de aprobación automática reduce el tiempo de revisión de gastos 
-                hasta en un 70%, permitiendo a los gerentes concentrarse en tareas más estratégicas.
+      <section className="relative bg-white dark:bg-gray-800 overflow-hidden">
+        <HeroSection />
+      </section>
+      
+      {/* Problem Solution */}
+      <section className="py-20 bg-gray-50 dark:bg-gray-900">
+        <ProblemSolution />
+      </section>
+      
+      {/* Innovative Features */}
+      <section id="features" className="py-24 bg-white dark:bg-gray-800">
+        <InnovativeFeatures />
+      </section>
+      
+      {/* ROI Calculator */}
+      <section id="roi" className="py-20 bg-gray-50 dark:bg-gray-900">
+        <ROICalculator />
+      </section>
+      
+      {/* Comparison Table */}
+      <section id="comparison" className="py-24 bg-white dark:bg-gray-800">
+        <ComparisonTable />
+      </section>
+      
+      {/* Use Cases */}
+      <section id="cases" className="py-20 bg-gray-50 dark:bg-gray-900">
+        <UseCases />
+      </section>
+      
+      {/* Integration */}
+      <section className="py-24 bg-white dark:bg-gray-800">
+        <Integration />
+      </section>
+      
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+              <Link to="/" className="flex items-center mb-6">
+                <img src="/logo.svg" alt="Gastify Logo" className="h-8 w-auto mr-2" />
+                <span className="text-xl font-bold">Gastify</span>
+              </Link>
+              <p className="text-gray-400 mb-6">
+                Simplificando la gestión de gastos corporativos para empresas de todos los tamaños.
               </p>
+              <div className="flex space-x-4">
+                <a href="#" className="text-gray-400 hover:text-white">
+                  <span className="sr-only">Twitter</span>
+                  <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+                  </svg>
+                </a>
+                <a href="#" className="text-gray-400 hover:text-white">
+                  <span className="sr-only">LinkedIn</span>
+                  <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                  </svg>
+                </a>
+              </div>
             </div>
-
-            {/* Feature 2 */}
-            <div className="space-y-4">
-              <div className="flex items-center justify-center h-12 w-12 rounded-md bg-primary-500 text-white">
-                <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-medium leading-6 text-gray-900">Informes en Tiempo Real</h3>
-              <p className="mt-2 text-base text-gray-500">
-                Accede a informes detallados y personalizables en tiempo real. 
-                Monitorea el gasto por departamento, proyecto o empleado de manera instantánea.
-              </p>
+            
+            <div>
+              <h3 className="text-sm font-semibold uppercase tracking-wider mb-4">Producto</h3>
+              <ul className="space-y-3">
+                <li><a href="#features" className="text-gray-400 hover:text-white">Características</a></li>
+                <li><a href="#roi" className="text-gray-400 hover:text-white">Calculadora ROI</a></li>
+                <li><a href="#comparison" className="text-gray-400 hover:text-white">Comparativa</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-white">Precios</a></li>
+              </ul>
             </div>
-
-            {/* Feature 3 */}
-            <div className="space-y-4">
-              <div className="flex items-center justify-center h-12 w-12 rounded-md bg-primary-500 text-white">
-                <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-medium leading-6 text-gray-900">Integración con Contabilidad</h3>
-              <p className="mt-2 text-base text-gray-500">
-                Exporta tus gastos directamente a tu sistema contable. 
-                Gastify se integra con los principales ERP y sistemas contables del mercado.
-              </p>
+            
+            <div>
+              <h3 className="text-sm font-semibold uppercase tracking-wider mb-4">Soporte</h3>
+              <ul className="space-y-3">
+                <li><a href="#" className="text-gray-400 hover:text-white">Centro de ayuda</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-white">Documentación</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-white">API</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-white">Contacto</a></li>
+              </ul>
             </div>
-
-            {/* Feature 4 */}
-            <div className="space-y-4">
-              <div className="flex items-center justify-center h-12 w-12 rounded-md bg-primary-500 text-white">
-                <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                </svg>
-              </div>
-              <h3 className="text-lg font-medium leading-6 text-gray-900">Seguridad y Privacidad</h3>
-              <p className="mt-2 text-base text-gray-500">
-                Tus datos están seguros con Gastify. 
-                Implementamos las mejores prácticas de seguridad para proteger tu información financiera.
-              </p>
+            
+            <div>
+              <h3 className="text-sm font-semibold uppercase tracking-wider mb-4">Legal</h3>
+              <ul className="space-y-3">
+                <li><a href="#" className="text-gray-400 hover:text-white">Privacidad</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-white">Términos</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-white">Cookies</a></li>
+              </ul>
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* Benefits Section */}
-      <div className="bg-white">
-        <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-              ¿Cómo Gastify te ayuda?
-            </h2>
-            <p className="mt-4 text-lg text-gray-500">
-              Descubre cómo Gastify puede transformar la gestión de gastos de tu empresa
+          
+          <div className="border-t border-gray-800 pt-8 mt-12">
+            <p className="text-gray-400 text-sm text-center">
+              &copy; {new Date().getFullYear()} Gastify. Todos los derechos reservados.
             </p>
           </div>
-          <div className="mt-12">
-            <dl className="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10">
-              {/* Benefit 1 */}
-              <div>
-                <dt>
-                  <div className="flex items-center justify-center h-12 w-12 rounded-md bg-primary-500 text-white">
-                    <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <p className="ml-16 text-lg leading-6 font-medium text-gray-900">Ahorro de Tiempo</p>
-                </dt>
-                <dd className="mt-2 ml-16 text-base text-gray-500">
-                  Reduce el tiempo dedicado a la gestión de gastos hasta en un 70% con nuestro sistema automatizado.
-                </dd>
-              </div>
-
-              {/* Benefit 2 */}
-              <div>
-                <dt>
-                  <div className="flex items-center justify-center h-12 w-12 rounded-md bg-primary-500 text-white">
-                    <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <p className="ml-16 text-lg leading-6 font-medium text-gray-900">Control Total</p>
-                </dt>
-                <dd className="mt-2 ml-16 text-base text-gray-500">
-                  Accede a toda la información de tus gastos desde cualquier dispositivo, en tiempo real.
-                </dd>
-              </div>
-
-              {/* Benefit 3 */}
-              <div>
-                <dt>
-                  <div className="flex items-center justify-center h-12 w-12 rounded-md bg-primary-500 text-white">
-                    <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <p className="ml-16 text-lg leading-6 font-medium text-gray-900">Optimización de Costos</p>
-                </dt>
-                <dd className="mt-2 ml-16 text-base text-gray-500">
-                  Identifica patrones de gasto y oportunidades de ahorro con nuestros análisis detallados.
-                </dd>
-              </div>
-
-              {/* Benefit 4 */}
-              <div>
-                <dt>
-                  <div className="flex items-center justify-center h-12 w-12 rounded-md bg-primary-500 text-white">
-                    <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <p className="ml-16 text-lg leading-6 font-medium text-gray-900">Compliance Fiscal</p>
-                </dt>
-                <dd className="mt-2 ml-16 text-base text-gray-500">
-                  Mantén el registro de tus gastos en orden y cumple con todas las obligaciones fiscales.
-                </dd>
-              </div>
-            </dl>
-          </div>
         </div>
-      </div>
-
-      {/* CTA Section */}
-      <div className="bg-gray-50">
-        <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-              ¿Listo para transformar tu gestión de gastos?
-            </h2>
-            <p className="mt-4 text-lg text-gray-500">
-              Únete a las empresas que ya están optimizando sus procesos con Gastify.
-            </p>
-            <div className="mt-8">
-              <Link
-                to="/login"
-                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
-              >
-                Empezar Ahora
-              </Link>
-              <Link
-                to="/contact"
-                className="ml-3 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-primary-700 bg-primary-100 hover:bg-primary-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
-              >
-                Solicitar Demo
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
+      </footer>
     </div>
   );
 };

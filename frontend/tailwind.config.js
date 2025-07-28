@@ -1,4 +1,4 @@
-c/** @type {import('tailwindcss').Config} */
+/** @type {import('tailwindcss').Config} */
 export default {
   content: [
     "./index.html",
@@ -89,9 +89,72 @@ export default {
       fontFamily: {
         sans: ['Inter var', 'Inter', 'sans-serif'],
       },
+      animation: {
+        'spin-slow': 'spin 3s linear infinite',
+        'spin-fast': 'spin 0.5s linear infinite',
+        'blob': 'blob 7s infinite',
+        'blink': 'blink 1s step-end infinite',
+      },
+      keyframes: {
+        blob: {
+          '0%': {
+            transform: 'translate(0px, 0px) scale(1)',
+          },
+          '33%': {
+            transform: 'translate(30px, -50px) scale(1.1)',
+          },
+          '66%': {
+            transform: 'translate(-20px, 20px) scale(0.9)',
+          },
+          '100%': {
+            transform: 'translate(0px, 0px) scale(1)',
+          },
+        },
+        blink: {
+          '0%, 100%': { opacity: 1 },
+          '50%': { opacity: 0 },
+        }
+      },
+      transitionDelay: {
+        '2000': '2000ms',
+        '4000': '4000ms',
+      },
+      // Agregar clases para animation-delay
+      utilities: {
+        '.animation-delay-200': {
+          'animation-delay': '200ms',
+        },
+        '.animation-delay-400': {
+          'animation-delay': '400ms',
+        },
+        '.animation-delay-2000': {
+          'animation-delay': '2000ms',
+        },
+        '.animation-delay-4000': {
+          'animation-delay': '4000ms',
+        },
+      },
     },
   },
   plugins: [
-    require('@tailwindcss/forms')
+    require('@tailwindcss/forms'),
+    // Plugin para agregar animation-delay classes
+    function ({ addUtilities }) {
+      const newUtilities = {
+        '.animation-delay-200': {
+          'animation-delay': '200ms',
+        },
+        '.animation-delay-400': {
+          'animation-delay': '400ms',
+        },
+        '.animation-delay-2000': {
+          'animation-delay': '2000ms',
+        },
+        '.animation-delay-4000': {
+          'animation-delay': '4000ms',
+        },
+      };
+      addUtilities(newUtilities);
+    },
   ],
 }
