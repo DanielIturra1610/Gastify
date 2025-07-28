@@ -1,6 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { useAuth } from './hooks/useAuth'
 import ProtectedRoute from './components/auth/ProtectedRoute'
+import LandingPage from './pages/landing/LandingPage'
 import LoginPage from './pages/auth/LoginPage'
 import RegisterPage from './pages/auth/RegisterPage'
 import DashboardPage from './pages/dashboard/DashboardPage'
@@ -24,9 +25,13 @@ function App() {
 
   return (
     <Routes>
+      {/* Ruta principal */}
+      <Route path="/" element={<LandingPage />} />
+      
       {/* Rutas públicas */}
       <Route path="/login" element={!isAuthenticated ? <LoginPage /> : <Navigate to="/dashboard" />} />
       <Route path="/register" element={!isAuthenticated ? <RegisterPage /> : <Navigate to="/dashboard" />} />
+      <Route path="/contact" element={<LandingPage />} />
       
       {/* Rutas protegidas */}
       <Route element={<ProtectedRoute />}>
