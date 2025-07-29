@@ -14,9 +14,12 @@
     "formik": "^2.2.9",
     "framer-motion": "^12.23.11",
     "jwt-decode": "^3.1.2",
+    "lottie-react": "^2.4.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-parallax-tilt": "^1.7.303",
     "react-router-dom": "^6.10.0",
+    "react-use-measure": "^2.1.7",
     "yup": "^1.1.1",
     "zustand": "^4.3.7"
   },

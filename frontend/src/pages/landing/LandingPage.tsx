@@ -118,49 +118,49 @@ const LandingPage: React.FC = () => {
         </div>
         
         {/* Hero Section */}
-        <section className="relative py-20 mb-8">
+        <section className="relative">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <HeroSection />
           </div>
         </section>
         
         {/* Problem Solution - fondo alterno */}
-        <section className="py-20 mb-8">
+        <section>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <ProblemSolution />
           </div>
         </section>
         
         {/* Innovative Features */}
-        <section id="features" className="py-24 mb-8">
+        <section id="features">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <InnovativeFeatures />
           </div>
         </section>
         
         {/* ROI Calculator - fondo alterno */}
-        <section id="roi" className="py-20 mb-8">
+        <section id="roi">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <ROICalculator />
           </div>
         </section>
         
         {/* Comparison Table */}
-        <section id="comparison" className="py-24 mb-8">
+        <section id="comparison">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <ComparisonTable />
           </div>
         </section>
         
         {/* Use Cases - fondo alterno */}
-        <section id="cases" className="py-20 mb-8">
+        <section id="cases">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <UseCases />
           </div>
         </section>
         
         {/* Integration */}
-        <section className="py-24 mb-8">
+        <section>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <Integration />
           </div>
